@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.keepdoing.config.ProvidersConfig;
 import ru.keepdoing.model.Weather;
 import ru.keepdoing.service.GetWeatherService;
+import ru.keepdoing.utils.PropertiesLoader;
 
 import java.io.IOException;
+import java.util.Map;
 
 @RestController
 @RequestMapping("weather")
@@ -24,14 +26,23 @@ public class WeatherController {
     }
 
     @RequestMapping("providers")
-    public String[] heartBeat(){
+    public String[] heartBeat() {
         return config.getProviders();
     }
 
+    @RequestMapping("test")
+    public Weather getModel() {
+        return new Weather("Moscow", "10", "75", "1023");
+    }
 
-    @RequestMapping("model")
-    public Weather getModel(){
-        return new Weather("Moscow","10","75","1023");
+    @RequestMapping("property")
+    public String getVal(@RequestParam("val") String prop) {
+        return PropertiesLoader.get(prop);
+    }
+
+    @RequestMapping("map")
+    public Map getMap() {
+        return config.getMap();
     }
 
 }
