@@ -1,7 +1,5 @@
 package ru.keepdoing.model;
 
-import ru.keepdoing.utils.PropertiesLoader;
-
 public class Weather {
     private static final String temperatureUnit = "\u00B0C";
     private static final String humidityUnit = "%";
