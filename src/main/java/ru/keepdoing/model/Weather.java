@@ -21,7 +21,13 @@ public class Weather {
     }
 
     public String getCity() {
-        return city;
+        int ind = city.indexOf("-");
+        if (ind != -1) {
+            return city.substring(0, 1).toUpperCase() + city.substring(1, ind + 1) +
+                    city.substring(ind+1, ind + 2).toUpperCase() +
+                    city.substring(ind + 2);
+        }
+        return city.substring(0, 1).toUpperCase() + city.substring(1);
     }
 
     public void setCity(String city) {
@@ -54,10 +60,10 @@ public class Weather {
 
     @Override
     public String toString() {
-        return city + " {" +
-                ", temperature=" + temperature +
-                ", humidity=" + humidity +
-                ", pressure=" + pressure +
+        return getCity() + " {" +
+                ", temperature=" + getTemperature() +
+                ", humidity=" + getHumidity() +
+                ", pressure=" + getPressure() +
                 '}';
     }
 }
